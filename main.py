@@ -1,6 +1,16 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
+names =[]
+
+#questions bank dictionary
+questions_bank = {
+  1: ["question", "first and right anser", "second anser", "third answer", "forth answer", 1] ,
+  2: ["question", "first anser", "second anser", "third answer", "forth answer is right", 4] ,
+  3: ["question", "first anser", "second anser", "third answer is right", "forth answer", 3] ,
+  4: ["question", "first ", "second anser right", "third answer", "forth anser", 2] ,
+  5: ["question", "first ", "second anser right", "third answer", "forth anser", 2] ,
+}
 
 
 class Quiz:
@@ -44,9 +54,21 @@ class Quiz:
     def name_collection(self):
         name=self.entry_box.get()
         names.append(name) #add name to names list declared at the beginning
-        self.continue_button.destroy()
-        self.entry_box.destroy() #Destroy name frame then open the quiz runner
+        self.quiz_frame.destroy()
+        Questions(root)
+       
+class Questions:
+      def __init__(self, parent):
+        background_color="orange"# to set it as background color for all the label widget
 
+        #frame set up
+        self.quiz_frame=Frame(parent, bg = background_color, padx=100, pady=100)
+        self.quiz_frame.grid()
+        #widgets goes below
+        self.heading_label=Label(self.quiz_frame, text="Coding quiz", font=("Tw Cen MT","18","bold"),bg=background_color)
+        self.heading_label.grid(row=0, padx=20) 
+
+     
 
 
 
