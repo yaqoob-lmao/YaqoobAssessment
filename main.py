@@ -5,11 +5,11 @@ names =[]
 
 #questions bank dictionary
 questions_bank = {
-  1: ["question", "first and right anser", "second anser", "third answer", "forth answer", 1] ,
-  2: ["question", "first anser", "second anser", "third answer", "forth answer is right", 4] ,
-  3: ["question", "first anser", "second anser", "third answer is right", "forth answer", 3] ,
-  4: ["question", "first ", "second anser right", "third answer", "forth anser", 2] ,
-  5: ["question", "first ", "second anser right", "third answer", "forth anser", 2] ,
+  1: ["question1", "first and right answer", "second answer", "third answer", "forth answer", 1] ,
+  2: ["question2", "first answer", "second answer", "third answer", "forth answer is right", 4] ,
+  3: ["question3", "first answer", "second answer", "third answer is right", "forth answer", 3] ,
+  4: ["question4", "first ", "second ansewr right", "third answer", "forth answer", 2] ,
+  5: ["question5", "first ", "second answer right", "third answer", "forth answer", 2] ,
 }
 
 
@@ -19,18 +19,18 @@ class Quiz:
         background_color="orange"# to set it as background color for all the label widget
 
         #open image
-        self.comp_image= Image.open("computer.jpg")
-        self.comp_image=self.comp_image.resize((250,250), Image.ANTIALIAS)
-        self.comp_image=ImageTk.PhotoImage(self.comp_image)
+        self.comp_image = Image.open("computer.jpg")
+        self.comp_image = self.comp_image.resize((250,250), Image.ANTIALIAS)
+        self.comp_image = ImageTk.PhotoImage(self.comp_image)
 
 
         #frame set up
-        self.quiz_frame=Frame(parent, bg = background_color, padx=100, pady=100)
+        self.quiz_frame = Frame(parent, bg = background_color, padx=100, pady=100)
         #padx, pady How many pixels to pad widget, horizontally (x) and vertically (y), outside widget's borders.
         self.quiz_frame.grid()#This geometry manager organizes widgets in a table-like structure in the parent widget.
                
         #widgets goes below
-        self.heading_label=Label(self.quiz_frame, text="Coding quiz", font=("Tw Cen MT","18","bold"),bg=background_color)
+        self.heading_label = Label(self.quiz_frame, text="Coding quiz", font=("Tw Cen MT","18","bold"),bg=background_color)
         self.heading_label.grid(row=0, padx=20) 
      
         #label image
@@ -64,13 +64,26 @@ class Questions:
         #frame set up
         self.quiz_frame=Frame(parent, bg = background_color, padx=100, pady=100)
         self.quiz_frame.grid()
-        #widgets goes below
-        self.heading_label=Label(self.quiz_frame, text="Coding quiz", font=("Tw Cen MT","18","bold"),bg=background_color)
-        self.heading_label.grid(row=0, padx=20) 
+        #Question Label
+        self.question_label = Label(self.quiz_frame, text= questions_bank[1][0], font=("Tw Cen MT","18","bold"),bg=background_color)
+        self.question_label.grid(row=0, padx=20) 
 
-     
-
-
+        #varible to store value of choice
+        self.var1=IntVar()
+        #Radio button 1 for first answer
+        self.radio_buton1 = Radiobutton (self.quiz_frame, text= questions_bank[1][1], variable=self.var1, value=1 )
+        self.radio_buton1.grid(row=1)
+        self.var1=IntVar()
+        #Radio button 2 for first answer
+        self.radio_buton2 = Radiobutton (self.quiz_frame, text= questions_bank[1][2], variable=self.var1, value=1 )
+        self.radio_buton2.grid(row=2)
+        #Radio button 3 for first answer
+        self.radio_buton3 = Radiobutton (self.quiz_frame, text= questions_bank[1][3], variable=self.var1, value=1 )
+        self.radio_buton3.grid(row=3)
+        #Radio button 4 for first answer
+        self.radio_buton4 = Radiobutton (self.quiz_frame, text= questions_bank[1][4], variable=self.var1, value=1 )
+        self.radio_buton4.grid(row=4)
+    
 
       
 if __name__ == "__main__":
