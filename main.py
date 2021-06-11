@@ -2,7 +2,8 @@ from tkinter import *
 from PIL import ImageTk, Image
 
 names =[]
-
+qnum = 1
+score=0
 #questions bank dictionary
 questions_bank = {
   1: ["question1", "first and right answer", "second answer", "third answer", "forth answer", 1] ,
@@ -73,17 +74,54 @@ class Questions:
         #Radio button 1 for first answer
         self.radio_buton1 = Radiobutton (self.quiz_frame, text= questions_bank[1][1], variable=self.var1, value=1 )
         self.radio_buton1.grid(row=1)
-        self.var1=IntVar()
         #Radio button 2 for first answer
-        self.radio_buton2 = Radiobutton (self.quiz_frame, text= questions_bank[1][2], variable=self.var1, value=1 )
+        self.radio_buton2 = Radiobutton (self.quiz_frame, text= questions_bank[1][2], variable=self.var1, value=2 )
         self.radio_buton2.grid(row=2)
         #Radio button 3 for first answer
-        self.radio_buton3 = Radiobutton (self.quiz_frame, text= questions_bank[1][3], variable=self.var1, value=1 )
+        self.radio_buton3 = Radiobutton (self.quiz_frame, text= questions_bank[1][3], variable=self.var1, value=3 )
         self.radio_buton3.grid(row=3)
         #Radio button 4 for first answer
-        self.radio_buton4 = Radiobutton (self.quiz_frame, text= questions_bank[1][4], variable=self.var1, value=1 )
+        self.radio_buton4 = Radiobutton (self.quiz_frame, text= questions_bank[1][4], variable=self.var1, value=4 )
         self.radio_buton4.grid(row=4)
-    
+
+        self.score_label = Label(self.quiz_frame, text="score")
+        self.score_label.grid(row=5)
+
+        self.submit = Button ( self.quiz_frame, text="submit", font=("Helvetica", "13", "bold"), bg="orange", command=self.test_progress)
+        self.submit.grid(row=6,  padx=20, pady=20) 
+
+      def question_setup(self):
+        global qnum
+        self.var1.set(0)
+        self.question_label.config(text=questions_bank[qnum][0])
+        self.radio_buton1.config(text=questions_bank[qnum][1])
+        self.radio_buton2.config(text=questions_bank[qnum][2])
+        self.radio_buton3.config(text=questions_bank[qnum][3])
+        self.radio_buton4.config(text=questions_bank[qnum][4])
+
+
+      def test_progress(self):
+            global score, qnum #this score needs to be accissible to all the questions
+            scr_label=self.score_label
+            choice = self.var1.get() 
+            if choice == 0:
+              self.submit.config(text="Try Again, You didn't select an option")
+            else:
+              if choice == questions_bank[qnum][5]:#checking that the ky has the 
+                score+=1
+                scr_label.configure(text=score)
+                self.submit.config(text="Confirm")
+                scr_label.configure(text=score)
+                #self.endscreen()
+              else:
+                self.submit.config(text="Confirm")
+              qnum += 1         
+              if qnum==  len(questions_bank):
+                exit()   
+              self.question_setup()
+              
+
+
 
       
 if __name__ == "__main__":
